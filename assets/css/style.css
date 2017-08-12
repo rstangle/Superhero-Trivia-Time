@@ -1,0 +1,141 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	
+/*	background-image: url("../images/background-01.jpg");*/
+	background: black;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+/*	color: #d4e3e8;*/
+/*	padding-bottom: 100px;*/
+}
+
+.container {
+	margin: 0px auto 150px auto;
+	width: 80%;
+	padding: 0px 3% 10% 3%;
+	background-color: black;
+	position: relative;
+/*	background-color: rgba(24, 27, 36, 0.7);*/
+	/*border-radius: 50px;*/
+	/*border: solid 5px #8c7ea1;*/
+/*	box-shadow: 3px 3px 7px #181b24;*/
+/*	box-shadow: 2px 2px 5px #181b24 inset;*/
+}
+
+.jumbotron {
+	background: none;
+	width: 90%;
+	text-align: left;
+	padding: 0px 0px 50px 0px;
+	margin: 0px auto 10% auto;
+}
+
+
+
+.panel-title {
+	font-size: 24px;
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	color: white;
+}
+
+.panel {
+/*	z-index: 99;*/
+	background: none;
+	border: none;
+	margin-top: 50px;
+}
+
+.panel-info {
+	border-color: none;
+}
+
+#hero {
+/*	background-color: #221b26;*/
+	margin: 0% 0%;
+	border: 0px;
+	box-shadow: none;
+	background: none;
+	z-index: 100;
+	position: absolute;
+	left:-85px;
+	bottom: -125px;
+	width: 45%;
+}
+
+#villian {
+/*	background-color: #221b26;*/
+	margin: 0% 0%;
+	border: 0px;
+	box-shadow: none;
+	background: none;
+	z-index: 100;
+	position: absolute;
+	right:-200px;
+	top: -20px;
+	width: 35%;
+}
+
+.panel-body {
+	font-size: 24px;
+/*	font-family: 'Righteous', cursive;*/
+	padding: 3% 12%;
+	text-align: center;
+	background: none;
+	color: white;
+	border-color: none;
+/*	position: relative;*/
+}
+
+.list-group-item {
+	background: none;
+	color: white;
+	border: none;
+	line-height: 2;
+	font-size: 20px;
+}
+
+li {
+	font-size: 16px;
+/*	font-family: 'Righteous', cursive;*/
+	text-align: center;
+}
+
+
+.navbar-static-bottom {
+	padding: 20px 20px 40px 20px;
+	background: none;
+	color: white;
+	font-size: 12pt;
+	text-align: center;
+	border: 0px;
+	border-color: none;
+	margin: 15px auto 0px auto;
+	box-shadow: none;
+	font-family: 'Righteous', cursive;
+}
+
+.btn-default {
+	font-size: 20px;
+	font-family: 'Righteous', cursive;
+	margin-bottom: 10%;
+	margin-top: 10%;
+
+}
+
+/***********************************************************************************************************************
+***********************************************************************************************************************/
+
+@media screen and (min-width: 768px) {
+	.container .jumbotron {
+		padding: 0px 0px 0px 0px;
+		margin-bottom: 0px;
+		background: none;
+	} 
+}
