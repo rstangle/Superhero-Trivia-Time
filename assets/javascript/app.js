@@ -63,7 +63,7 @@ window.onload = function() {
 	}
 
 	var professorX = {
-		question: "I am the most powerful telepath on the planet and opened a school for other Gifted Individuals. Who am I?",
+		question: "I am the world's most powerful telepath and opened a school for other Gifted Individuals. Who am I?",
 		// answer: "Charles Xavier",
 		options: ["Charles Xavier","Jean Grey", "Adam Warlock", "Emma Frost"],
 	}

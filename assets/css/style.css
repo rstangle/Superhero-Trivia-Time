@@ -42,7 +42,7 @@ body {
 
 .panel-title {
 	/*font-size: 24px;*/
-	font-family: 'Righteous', cursive;
+	font-family: 'Luckiest Guy', 'Sedgwick Ave', 'Righteous', cursive;
 	text-align: center;
 	color: white;
 }
@@ -98,8 +98,8 @@ body {
 }
 
 .panel-body {
-	font-size: 24px;
-/*	font-family: 'Righteous', cursive;*/
+	font-size: 28px;
+	font-family: 'Permanent Marker', 'Sedgwick Ave', 'Righteous', cursive;
 	padding: 3% 12%;
 	text-align: center;
 	background: none;
@@ -114,6 +114,7 @@ body {
 	border: none;
 	line-height: 2;
 	font-size: 20px;
+	font-family: 'Sedgwick Ave', 'Righteous', cursive;
 }
 
 li {
