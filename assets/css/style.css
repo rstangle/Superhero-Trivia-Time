@@ -82,6 +82,19 @@ body {
 	right:-200px;
 	top: -20px;
 	width: 35%;
+	-webkit-animation: myfirst 7s infinite; /* Safari 4.0 - 8.0 */
+	animation: myfirst 7s infinite;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myfirst {
+    0%   {top: -40px;}
+    50%  {top: 100px;}
+    100% {top: -40px;}
+}
+@keyframes myfirst {
+     0%   {top: -40px;}
+    50%  {top: 100px;}
+    100% {top: -40px;}
 }
 
 .panel-body {

@@ -23,11 +23,8 @@
 
 // VARIABLES
 window.onload = function() {
-	// $("#answer1").click(xxxxxxxxx);
-	// $("#answer2").click(xxxxxxxxx);
-	// $("#answer3").click(xxxxxxxxx);
-	// $("#answer4").click(xxxxxxxxx);
-	$("#next").click(reset);	// This needs to change be hidden until the last screen with scores is shown
+
+	$("#next").click(reset);	// This needs to change to be hidden until the last screen with scores is shown
 };	
 
 	var number = 20;
@@ -36,28 +33,39 @@ window.onload = function() {
 	var right = 0;
 	var wrong = 0;
 	// var userGuess = .click();  // This isn't even a real thing... SERENITY NOW!!!!!
-	var questions = [wonderWoman, spiderMan, nightCrawler]; // Possibly use this to cycle through the questions with a for loop to know when game is over?
+	
+	// Possibly use this to cycle through the questions with a for loop to know when game is over?
+	var questionBank = [wonderWoman, spiderMan, nightCrawler, professorX]; 
 
-	var question = {} // Thought making an empty object for the question would be a good idea, just not sure how to use.
+	var answerBank = [];
+
+	// Thought making an empty object for the question would be a good idea, just not sure how to use.
+	var question = {} 
 
 	// QUESTION SUBJECT OBJECTS
 	// Thought this would be the most efficient way of declaring and passing in the varible to the var question object. Don't know how to do that though
 	var wonderWoman = {
-		question: "This superhero's supertools included bullet-proof bracelets and a magic lasso. Who is she?",
-		answer: "Wonder Woman",
-		options: ["Batgirl", "Catwoman", "Mystique"],
+		question: "My supertools included bullet-proof bracelets and a magic lasso. Who am I?",
+		// answer: "Wonder Woman",
+		options: ["Wonder Woman","Batgirl", "Catwoman", "Mystique"],
 	}
 
 	var spiderMan = {
 		question: "How did Spider-Man get his superpowers?",
-		answer: "He was bitten by a radioactive spider",
-		options: ["He was bombarded by cosmic rays", "He was born with his powers", "He was caught in a chemical explosion"],
+		// answer: "He was bitten by a radioactive spider",
+		options: ["He was bitten by a radioactive spider","He was bombarded by cosmic rays", "He was born with his powers", "He was caught in a chemical explosion"],
 	}
 
 	var nightCrawler = {
-		question: "This superhero is able to teleport and speaks fluent German. Who is he?",
-		answer: "Nightcrawler",
-		options: ["The Red Baron", "Dr. Strange", "Vision"],
+		question: "I am able to teleport and I have a prehensile tail. Wer bin ich?",
+		// answer: "Nightcrawler",
+		options: ["Nightcrawler","The Red Baron", "Dr. Strange", "Vision"],
+	}
+
+	var professorX = {
+		question: "I am the most powerful telepath on the planet and opened a school for other Gifted Individuals. Who am I?",
+		// answer: "Charles Xavier",
+		options: ["Charles Xavier","Jean Grey", "Adam Warlock", "Emma Frost"],
 	}
 
 	// var answer1Options = ["Wonder Woman", "Storm", "Batgirl", "Catwoman"];
@@ -105,6 +113,7 @@ window.onload = function() {
 	// go in an object, but unsure how to do it to keep it working.  Works now, but have to call individual 
 	// functions at the bottom.
 
+	// TIMER FUNCTIONS***************************************************************************************
 	 function run() {
       intervalId = setInterval(decrement, 1000);
       $("#timer").css("color", "white").html("<h1>" + number + "</h1>");
@@ -138,13 +147,22 @@ window.onload = function() {
 		run();
     }
 //**********************************************************************************************************
+	// LOOP to randomize the answers
+	// for(var i = 0; i < spiderMan.options.length; i++) {
+	// 	var random = Math.floor(Math.random() * 4);
+	// }
+
+
 //**********************************************************************************************************
+
+
+
 	function questionOne() {
 		$("#question").text(spiderMan.question);
 		$("#answer1").text(spiderMan.options[0]);
-		$("#answer2").text(spiderMan.answer);
-		$("#answer3").text(spiderMan.options[1]);
-		$("#answer4").text(spiderMan.options[2]);
+		$("#answer2").text(spiderMan.options[1]);
+		$("#answer3").text(spiderMan.options[2]);
+		$("#answer4").text(spiderMan.options[3]);
 		// if ("#answer2") === spiderMan.answer) {
 		// 	alert("You Win");
 		// }
@@ -155,9 +173,75 @@ window.onload = function() {
 	questionOne();
 	run();
 
-
+//**************************************************************************************************************
+//**************************************************************************************************************
+	
 	// ON CLICK FOR EACH QUESTION
-	// Don't even remember what I was trying to do here... register a click maybe?  
+	// This seems to be working... for now. The clicks register the answer choices for the spiderMan object.
 	$(".list-group-item").on("click", function () {
+		var answer1 = $("#answer1");
+		answer1.attr("data-answer", spiderMan.options[0]);
+    	
+    	var answer2 = $("#answer2");
+    	answer2.attr("data-answer", spiderMan.options[1]);
 
+    	var answer3 = $("#answer3");
+    	answer3.attr("data-answer", spiderMan.options[2]);
+
+    	var answer4 = $("#answer4");
+    	answer4.attr("data-answer", spiderMan.options[3]);
+
+		answerValue = ($(this).attr("data-answer"));
+		console.log("Answer: " + answerValue)
+
+
+		// Currently registering every pick as the wrong answer.  From Stack Overflow so not sure if I used it right.
+		// answer1 = false;
+		// $("#answer1").click(function () {
+		// 	answer1 = true;
+		// });
+
+		// if(answer1 = true) {
+		// 	console.log("You're Right Web Head!");
+		// 	right++;
+		// 	console.log("Right: " + right); 
+		// 	stop();
+		// } else {
+		// 	console.log("Better Luck Next Time");
+		// 	wrong++;
+		// 	console.log("Wrong: " + wrong);
+		// 	stop();
+		// }
+
+		// FINALLY FIGURED THIS OUT... BUT NOT THE MOST EFFICIENT WAY. HOW TO MAKE IT UNIVERSAL TO ALL OBJECTS?
+		if(answerValue === spiderMan.options[0]) {
+			console.log("You're Right Web Head!");
+			right++;
+			console.log("Right: " + right); 
+			stop();
+		} else {
+			console.log("Better Luck Next Time");
+			wrong++;
+			console.log("Wrong: " + wrong);
+			stop();
+		}
 	});
+//************************************************************************************************************
+//************************************************************************************************************
+	// Found on Stack Overflow... might be helpful
+
+	//Simply if an element isn't being clicked on, do a setInterval to continue the process until clicked.
+
+	// var checkClick = setInterval(function()
+	// {
+	//     // do something when the element hasn't been clicked yet
+	// }, 2000); // every 2 seconds
+
+	// jQuery('#id').click(function()
+	// {
+	//     clearInterval(checkClick); // this is optional, but it will
+	//                                // clear the interval once the element
+	//                                // has been clicked on
+
+	//     // do something else
+	// })
