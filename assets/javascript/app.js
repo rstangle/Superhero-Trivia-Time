@@ -17,7 +17,13 @@
 	//Time out equal to the countdown timer
 	//Cancel time out option once user picks an answer
 	//Click event to choose and answer
-
+	// function questionOne() {
+	// 	// console.log(this.questionBank);
+	// 	$("#question").text(questionBank[questionNumber].question);
+	// 	$("#answer1").text(questionBank[questionNumber].options[0]);
+	// 	$("#answer2").text(questionBank[questionNumber].options[1]);
+	// 	$("#answer3").text(questionBank[questionNumber].options[2]);
+	// 	$("#answer4").text(questionBank[questionNumber].options[3]);
 //********************************************************************************************************
 //********************************************************************************************************
 
@@ -35,39 +41,42 @@ window.onload = function() {
 	// var userGuess = .click();  // This isn't even a real thing... SERENITY NOW!!!!!
 	
 	// Possibly use this to cycle through the questions with a for loop to know when game is over?
-	var questionBank = [wonderWoman, spiderMan, nightCrawler, professorX]; 
+	var questionBank = []; 
 
-	var answerBank = [];
+	// var answerBank = [];
 
 	// Thought making an empty object for the question would be a good idea, just not sure how to use.
-	var question = {} 
+	var questionNumber = 0; 
 
 	// QUESTION SUBJECT OBJECTS
 	// Thought this would be the most efficient way of declaring and passing in the varible to the var question object. Don't know how to do that though
 	var wonderWoman = {
 		question: "My supertools included bullet-proof bracelets and a magic lasso. Who am I?",
-		// answer: "Wonder Woman",
+		answer: "Wonder Woman",
 		options: ["Wonder Woman","Batgirl", "Catwoman", "Mystique"],
 	}
+	questionBank.push(wonderWoman);
 
 	var spiderMan = {
 		question: "How did Spider-Man get his superpowers?",
-		// answer: "He was bitten by a radioactive spider",
+		answer: "He was bitten by a radioactive spider",
 		options: ["He was bitten by a radioactive spider","He was bombarded by cosmic rays", "He was born with his powers", "He was caught in a chemical explosion"],
 	}
+	questionBank.push(spiderMan);
 
 	var nightCrawler = {
 		question: "I am able to teleport and I have a prehensile tail. Wer bin ich?",
-		// answer: "Nightcrawler",
+		answer: "Nightcrawler",
 		options: ["Nightcrawler","The Red Baron", "Dr. Strange", "Vision"],
 	}
+	questionBank.push(nightCrawler);
 
 	var professorX = {
 		question: "I am the world's most powerful telepath and opened a school for other Gifted Individuals. Who am I?",
-		// answer: "Charles Xavier",
+		answer: "Charles Xavier",
 		options: ["Charles Xavier","Jean Grey", "Adam Warlock", "Emma Frost"],
 	}
-
+	questionBank.push(professorX);
 	// var answer1Options = ["Wonder Woman", "Storm", "Batgirl", "Catwoman"];
 
 	// var clock = {
@@ -155,23 +164,31 @@ window.onload = function() {
 
 //**********************************************************************************************************
 
-
+// within in function need conditional to check if current counter number is equal to questionBank.length, 
+//no more questions available 
 
 	function questionOne() {
-		$("#question").text(spiderMan.question);
-		$("#answer1").text(spiderMan.options[0]);
-		$("#answer2").text(spiderMan.options[1]);
-		$("#answer3").text(spiderMan.options[2]);
-		$("#answer4").text(spiderMan.options[3]);
+		// console.log(this.questionBank);
+		$("#question").text(questionBank[questionNumber].question);
+		$("#answer1").text(questionBank[questionNumber].options[0]);
+		$("#answer2").text(questionBank[questionNumber].options[1]);
+		$("#answer3").text(questionBank[questionNumber].options[2]);
+		$("#answer4").text(questionBank[questionNumber].options[3]);
+		// $("#question").text(spiderMan.question);
+		// $("#answer1").text(spiderMan.options[0]);
+		// $("#answer2").text(spiderMan.options[1]);
+		// $("#answer3").text(spiderMan.options[2]);
+		// $("#answer4").text(spiderMan.options[3]);
 		// if ("#answer2") === spiderMan.answer) {
 		// 	alert("You Win");
 		// }
+		reset();
 	}
 
 	// Used these to check onscreen functionality, but not the right solution for the game since it will have
 	// to be hard coded into the end of each question to move on... it think.  Feel like a dog chasing my tail...
 	questionOne();
-	run();
+	// run();
 
 //**************************************************************************************************************
 //**************************************************************************************************************
@@ -180,18 +197,18 @@ window.onload = function() {
 	// This seems to be working... for now. The clicks register the answer choices for the spiderMan object.
 	$(".list-group-item").on("click", function () {
 		var answer1 = $("#answer1");
-		answer1.attr("data-answer", spiderMan.options[0]);
+		answer1.attr("data-answer", questionBank[questionNumber].answer);
     	
     	var answer2 = $("#answer2");
-    	answer2.attr("data-answer", spiderMan.options[1]);
+    	answer2.attr("data-answer", questionBank[questionNumber].options[1]);
 
     	var answer3 = $("#answer3");
-    	answer3.attr("data-answer", spiderMan.options[2]);
+    	answer3.attr("data-answer", questionBank[questionNumber].options[2]);
 
     	var answer4 = $("#answer4");
-    	answer4.attr("data-answer", spiderMan.options[3]);
+    	answer4.attr("data-answer", questionBank[questionNumber].options[3]);
 
-		answerValue = ($(this).attr("data-answer"));
+		var answerValue = ($(this).attr("data-answer"));
 		console.log("Answer: " + answerValue)
 
 
@@ -214,15 +231,31 @@ window.onload = function() {
 		// }
 
 		// FINALLY FIGURED THIS OUT... BUT NOT THE MOST EFFICIENT WAY. HOW TO MAKE IT UNIVERSAL TO ALL OBJECTS?
-		if(answerValue === spiderMan.options[0]) {
-			console.log("You're Right Web Head!");
+		if(answerValue === questionBank[questionNumber].answer) {
+			console.log("You're Right!");
 			right++;
 			console.log("Right: " + right); 
+			questionNumber++;
+			if(questionNumber < questionBank.length) {
+				questionOne();
+			} else {
+				// gameover code that needs to be written
+			}
+			stop();
+		} else if(number == 0) {
+			console.log("Better Luck Next Time");
+			wrong++;
+			console.log("Wrong: " + wrong);
 			stop();
 		} else {
 			console.log("Better Luck Next Time");
 			wrong++;
 			console.log("Wrong: " + wrong);
+			if(questionNumber < questionBank.length) {
+				questionOne();
+			} else {
+				// gameover code that needs to be written
+			}
 			stop();
 		}
 	});
