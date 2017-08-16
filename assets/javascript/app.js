@@ -16,14 +16,7 @@
 	//Countdown clock
 	//Time out equal to the countdown timer
 	//Cancel time out option once user picks an answer
-	//Click event to choose and answer
-	// function questionOne() {
-	// 	// console.log(this.questionBank);
-	// 	$("#question").text(questionBank[questionNumber].question);
-	// 	$("#answer1").text(questionBank[questionNumber].options[0]);
-	// 	$("#answer2").text(questionBank[questionNumber].options[1]);
-	// 	$("#answer3").text(questionBank[questionNumber].options[2]);
-	// 	$("#answer4").text(questionBank[questionNumber].options[3]);
+
 //********************************************************************************************************
 //********************************************************************************************************
 
@@ -45,7 +38,8 @@ window.onload = function() {
 
 	// var answerBank = [];
 
-	// Thought making an empty object for the question would be a good idea, just not sure how to use.
+	// questionNumber is the same as round 1, round 2, round 3... Increments with the questionBank array index values.
+	// the mechanism to change questions.
 	var questionNumber = 0; 
 
 	// QUESTION SUBJECT OBJECTS
@@ -194,7 +188,7 @@ window.onload = function() {
 //**************************************************************************************************************
 	
 	// ON CLICK FOR EACH QUESTION
-	// This seems to be working... for now. The clicks register the answer choices for the spiderMan object.
+	// This seems to be working... for now. The clicks register the answer choices for the varying objects.
 	$(".list-group-item").on("click", function () {
 		var answer1 = $("#answer1");
 		answer1.attr("data-answer", questionBank[questionNumber].answer);
@@ -211,6 +205,7 @@ window.onload = function() {
 		var answerValue = ($(this).attr("data-answer"));
 		console.log("Answer: " + answerValue)
 
+		// I think this is where my image code will need to go
 
 		// Currently registering every pick as the wrong answer.  From Stack Overflow so not sure if I used it right.
 		// answer1 = false;
@@ -230,33 +225,41 @@ window.onload = function() {
 		// 	stop();
 		// }
 
-		// FINALLY FIGURED THIS OUT... BUT NOT THE MOST EFFICIENT WAY. HOW TO MAKE IT UNIVERSAL TO ALL OBJECTS?
+		// FINALLY FIGURED THIS OUT... DAN HELPED ME TO MAKE IT UNIVERSAL TO ALL OBJECTS
 		if(answerValue === questionBank[questionNumber].answer) {
 			console.log("You're Right!");
 			right++;
 			console.log("Right: " + right); 
 			questionNumber++;
-			if(questionNumber < questionBank.length) {
+			stop();
+			if(questionNumber < questionBank.length ) {
 				questionOne();
 			} else {
 				// gameover code that needs to be written
 			}
-			stop();
-		} else if(number == 0) {
+		} else if(number === 0) {
 			console.log("Better Luck Next Time");
 			wrong++;
 			console.log("Wrong: " + wrong);
+			questionNumber++;
 			stop();
+			if(questionNumber < questionBank.length ) {
+				questionOne();
+			} else {
+				// gameover code that needs to be written
+			}
 		} else {
 			console.log("Better Luck Next Time");
 			wrong++;
 			console.log("Wrong: " + wrong);
+			questionNumber++;
+			stop();
 			if(questionNumber < questionBank.length) {
 				questionOne();
 			} else {
 				// gameover code that needs to be written
 			}
-			stop();
+			// stop();
 		}
 	});
 //************************************************************************************************************
