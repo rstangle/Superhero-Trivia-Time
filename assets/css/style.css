@@ -36,8 +36,9 @@ body {
 	margin: 0px auto 10% auto;
 }
 
-#timer {
-	font-size: 36px;
+#timer > h1 {
+	font-size: 48px;
+	text-decoration-line: underline;
 }
 
 .panel-title {
@@ -140,6 +141,7 @@ li {
 
 li:hover {
 	color: red;
+	font-size: 200%;
 }
 
 
@@ -147,13 +149,13 @@ li:hover {
 	padding: 20px 20px 40px 20px;
 	background: none;
 	color: white;
-	font-size: 12pt;
+	font-size: 10pt;
 	text-align: center;
 	border: 0px;
 	border-color: none;
 	margin: 15px auto 0px auto;
 	box-shadow: none;
-	font-family: 'Righteous', cursive;
+	font-family: 'Sedgwick Ave', 'Righteous', cursive;
 }
 
 .btn-default {
