@@ -23,7 +23,8 @@
 // VARIABLES
 window.onload = function() {
 	$("#stats").hide();
-	$("#next").click(reset);	// This needs to change to be hidden until the last screen with scores is shown
+	$("#next").click(gameReload); // This needs to change to be hidden until the last screen with scores is shown
+	$("#next").hide();
 };	
 
 	var number = 20;
@@ -147,8 +148,8 @@ window.onload = function() {
     function reset() {
     	number = 20;
 		$("#timer").html(20);
-		$("#stats").hide();
-		$("#question-area").show();
+		// $("#stats").hide();
+		// $("#question-area").show();
 		run();
 	}
 //**********************************************************************************************************
@@ -181,6 +182,49 @@ window.onload = function() {
 		reset();
 		// run();
 	}
+
+	// GAME RELOAD FUNCTION
+	function gameReload(){
+		number = 20;
+		questionBank = [];
+		questionNumber = 0;
+		
+		var wonderWoman = {
+		question: "My supertools included bullet-proof bracelets and a magic lasso. Who am I?",
+		answer: "Wonder Woman",
+		options: ["Wonder Woman","Batgirl", "Catwoman", "Mystique"],
+		}
+		questionBank.push(wonderWoman);
+
+		var spiderMan = {
+			question: "How did Spider-Man get his superpowers?",
+			answer: "He was bitten by a radioactive spider",
+			options: ["He was bitten by a radioactive spider","He was bombarded by cosmic rays", "He was born with his powers", "He was caught in a chemical explosion"],
+		}
+		questionBank.push(spiderMan);
+
+		var nightCrawler = {
+			question: "I am able to teleport and I have a prehensile tail. Wer bin ich?",
+			answer: "Nightcrawler",
+			options: ["Nightcrawler","The Red Baron", "Dr. Strange", "Vision"],
+		}
+		questionBank.push(nightCrawler);
+
+		var professorX = {
+			question: "I am the world's most powerful telepath and opened a school for other Gifted Individuals. Who am I?",
+			answer: "Charles Xavier",
+			options: ["Charles Xavier","Jean Grey", "Adam Warlock", "Emma Frost"],
+		}
+		questionBank.push(professorX);
+		
+		$("#stats").hide();
+		$("#question-area").show();
+		$("#next").hide();
+		questionOne();
+	}
+
+
+
 	// END GAME FUNCTION
 	// function endGame() {
 	// 	right;
@@ -248,8 +292,10 @@ window.onload = function() {
 			} else {
 				$("#question-area").hide();
 				$("#stats").show();
+				$("#next").show();
 				$("#right").text("Correct Answers: " + right);
 				$("#wrong").text("Wrong Answers: " + wrong);
+				
 			}
 		} else if(number === 0) {
 			console.log("Better Luck Next Time");
@@ -262,6 +308,7 @@ window.onload = function() {
 			} else {
 				$("#question-area").hide();
 				$("#stats").show();
+				$("#next").show();
 				$("#right").text("Correct Answers: " + right);
 				$("#wrong").text("Wrong Answers: " + wrong);
 			}
@@ -276,6 +323,7 @@ window.onload = function() {
 			} else {
 				$("#question-area").hide();
 				$("#stats").show();
+				$("#next").show();
 				$("#right").text("Correct Answers: " + right);
 				$("#wrong").text("Wrong Answers: " + wrong);
 			}
