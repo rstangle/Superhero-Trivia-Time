@@ -22,7 +22,7 @@
 
 // VARIABLES
 window.onload = function() {
-
+	$("#stats").hide();
 	$("#next").click(reset);	// This needs to change to be hidden until the last screen with scores is shown
 };	
 
@@ -147,8 +147,10 @@ window.onload = function() {
     function reset() {
     	number = 20;
 		$("#timer").html(20);
+		$("#stats").hide();
+		$("#question-area").show();
 		run();
-    }
+	}
 //**********************************************************************************************************
 	// LOOP to randomize the answers
 	// for(var i = 0; i < spiderMan.options.length; i++) {
@@ -177,7 +179,16 @@ window.onload = function() {
 		// 	alert("You Win");
 		// }
 		reset();
+		// run();
 	}
+	// END GAME FUNCTION
+	// function endGame() {
+	// 	right;
+	// 	$(".panel").hide();
+	// 	$("#stats").show();
+	// 	$("#stats").text(right);
+	// 	console.log(endGame);
+	// }
 
 	// Used these to check onscreen functionality, but not the right solution for the game since it will have
 	// to be hard coded into the end of each question to move on... it think.  Feel like a dog chasing my tail...
@@ -226,27 +237,33 @@ window.onload = function() {
 		// }
 
 		// FINALLY FIGURED THIS OUT... DAN HELPED ME TO MAKE IT UNIVERSAL TO ALL OBJECTS
-		if(answerValue === questionBank[questionNumber].answer) {
+		if(answerValue === questionBank[questionNumber].answer && number > 0) {
 			console.log("You're Right!");
 			right++;
 			console.log("Right: " + right); 
 			questionNumber++;
 			stop();
-			if(questionNumber < questionBank.length ) {
+			if(questionNumber < questionBank.length) {
 				questionOne();
 			} else {
-				// gameover code that needs to be written
+				$("#question-area").hide();
+				$("#stats").show();
+				$("#right").text("Correct Answers: " + right);
+				$("#wrong").text("Wrong Answers: " + wrong);
 			}
 		} else if(number === 0) {
 			console.log("Better Luck Next Time");
-			wrong++;
+			// wrong++;
 			console.log("Wrong: " + wrong);
 			questionNumber++;
 			stop();
-			if(questionNumber < questionBank.length ) {
+			if(questionNumber < questionBank.length) {
 				questionOne();
 			} else {
-				// gameover code that needs to be written
+				$("#question-area").hide();
+				$("#stats").show();
+				$("#right").text("Correct Answers: " + right);
+				$("#wrong").text("Wrong Answers: " + wrong);
 			}
 		} else {
 			console.log("Better Luck Next Time");
@@ -257,7 +274,10 @@ window.onload = function() {
 			if(questionNumber < questionBank.length) {
 				questionOne();
 			} else {
-				// gameover code that needs to be written
+				$("#question-area").hide();
+				$("#stats").show();
+				$("#right").text("Correct Answers: " + right);
+				$("#wrong").text("Wrong Answers: " + wrong);
 			}
 			// stop();
 		}
