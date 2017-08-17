@@ -49,8 +49,10 @@ window.onload = function() {
 		question: "My supertools included bullet-proof bracelets and a magic lasso. Who am I?",
 		answer: "Wonder Woman",
 		options: ["Wonder Woman","Batgirl", "Catwoman", "Mystique"],
+		image: "../images/wonderwoman.jpg",
 	}
 	questionBank.push(wonderWoman);
+	// answerBank.push(wonderWoman.answer);
 
 	var spiderMan = {
 		question: "How did Spider-Man get his superpowers?",
@@ -58,6 +60,8 @@ window.onload = function() {
 		options: ["He was bitten by a radioactive spider","He was bombarded by cosmic rays", "He was born with his powers", "He was caught in a chemical explosion"],
 	}
 	questionBank.push(spiderMan);
+	// answerBank.push(spiderMan.answer);
+
 
 	var nightCrawler = {
 		question: "I am able to teleport and I have a prehensile tail. Wer bin ich?",
@@ -65,6 +69,8 @@ window.onload = function() {
 		options: ["Nightcrawler","The Red Baron", "Dr. Strange", "Vision"],
 	}
 	questionBank.push(nightCrawler);
+	// answerBank.push(nightCrawler.answer);
+
 
 	var professorX = {
 		question: "I am the world's most powerful telepath and opened a school for other Gifted Individuals. Who am I?",
@@ -72,6 +78,9 @@ window.onload = function() {
 		options: ["Charles Xavier","Jean Grey", "Adam Warlock", "Emma Frost"],
 	}
 	questionBank.push(professorX);
+	// answerBank.push(professorX.answer);
+
+
 	// var answer1Options = ["Wonder Woman", "Storm", "Batgirl", "Catwoman"];
 
 	// var clock = {
@@ -184,7 +193,7 @@ window.onload = function() {
 	}
 
 	// GAME RELOAD FUNCTION
-	function gameReload(){
+	function gameReload() {
 		number = 20;
 		questionBank = [];
 		questionNumber = 0;
@@ -221,6 +230,12 @@ window.onload = function() {
 		$("#question-area").show();
 		$("#next").hide();
 		questionOne();
+	}
+
+	// Need a function to show the image after answer is chosen.
+	function showImage() {
+		$(".list-group").hide();
+		$("#show-image").html("<img src=" + questionBank[questionNumber].image + "width='200px'/>");
 	}
 
 
@@ -287,6 +302,8 @@ window.onload = function() {
 			console.log("Right: " + right); 
 			questionNumber++;
 			stop();
+			// $("#list-group-item").css({"color": "green"} + questionBank[questionNumber].answer);
+			// showImage();
 			if(questionNumber < questionBank.length) {
 				questionOne();
 			} else {
@@ -295,7 +312,11 @@ window.onload = function() {
 				$("#next").show();
 				$("#right").text("Correct Answers: " + right);
 				$("#wrong").text("Wrong Answers: " + wrong);
-				
+				// $("#stats").append("<p>Answers:</p>");
+				// $("#stats").append("<p>" + wonderWoman.answer + "</p>");
+				// $("#stats").append("<p>" + spiderMan.answer + "</p>");
+				// $("#stats").append("<p>" + nightCrawler.answer + "</p>");
+				// $("#stats").append("<p>" + professorX.answer + "</p>");				
 			}
 		} else if(number === 0) {
 			console.log("Better Luck Next Time");
